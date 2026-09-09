@@ -1,0 +1,1 @@
+import{i as e,l as t,s as n}from"./dist-P3XBpL90.js";t();var r=n();function i({className:t,...n}){return(0,r.jsx)(`div`,{className:e(`rounded-xl bg-card text-card-foreground shadow-[var(--shadow-border)]`,t),...n})}function a({className:t,...n}){return(0,r.jsx)(`div`,{className:e(`p-5`,t),...n})}export{a as n,i as t};
