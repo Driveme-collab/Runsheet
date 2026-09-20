@@ -11,6 +11,7 @@ import {
   Route as RouteIcon,
   ScrollText,
   Settings,
+  Users,
   Wallet,
   X,
 } from "lucide-react";
@@ -23,7 +24,7 @@ type NavItem = {
   label: string;
   icon: typeof LayoutDashboard;
   match?: string;
-  search?: { tab: string };
+  search?: { tab?: "savings" | "purpose" | "budget" | "numbers" | "emergency" | "flow" };
 };
 
 const PRIMARY: NavItem[] = [
@@ -36,6 +37,7 @@ const PRIMARY: NavItem[] = [
 const MORE: NavItem[] = [
   { to: "/vehicle", label: "Vehicle", icon: Car },
   { to: "/growth", label: "Growth", icon: GraduationCap },
+  { to: "/community", label: "Community", icon: Users },
   { to: "/calendar", label: "Calendar", icon: CalendarDays },
   { to: "/reviews", label: "My week", icon: BookOpen },
   { to: "/reports", label: "Reports", icon: ScrollText },
@@ -70,6 +72,10 @@ const DESKTOP: { heading: string; items: NavItem[] }[] = [
       { to: "/goals", label: "Goals", icon: Flag },
       { to: "/growth", label: "Growth", icon: GraduationCap },
     ],
+  },
+  {
+    heading: "Together",
+    items: [{ to: "/community", label: "Community", icon: Users }],
   },
   {
     heading: "Look back",

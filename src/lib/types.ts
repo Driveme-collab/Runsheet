@@ -562,4 +562,111 @@ export type Settings = {
   reminders: Reminders;
 };
 
+export const DEFAULT_CURRENCY: CurrencyCode = "RWF";
+export const CITY_PLACEHOLDER = "Kigali";
+export const APP_LOCALE = "en-RW";
+export const DISTANCE_UNIT = "km";
+
+export type DriverProfile = {
+  name: string;
+  city: string;
+  currency: CurrencyCode;
+  drivingSituation: DrivingSituation;
+  workSources: Platform[];
+};
+
+export type Vehicle = {
+  id: string;
+  make: string;
+  model: string;
+  year: string;
+  plate: string;
+  fuelType: FuelType;
+  currentMileage: number;
+  purchaseValue: number | null;
+};
+
+export const MILESTONE_CATEGORIES = ["work", "money", "vehicle", "goals", "growth"] as const;
+export type MilestoneCategory = (typeof MILESTONE_CATEGORIES)[number];
+
+export type RecordedMilestone = {
+  id: string;
+  title: string;
+  category: MilestoneCategory;
+  detail: string;
+  unlockedAt: string | null;
+};
+
+export type StoredInsight = {
+  id: string;
+  createdAt: string;
+  period: "week" | "month";
+  text: string;
+};
+
+export const AVAILABILITY_STATUSES = ["open", "busy", "rest"] as const;
+export type AvailabilityStatus = (typeof AVAILABILITY_STATUSES)[number];
+
+export type DriverAvailability = {
+  id: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  status: AvailabilityStatus;
+  note: string;
+};
+
+export const HANDOFF_STATUSES = ["pending", "accepted", "declined", "completed"] as const;
+export type HandoffStatus = (typeof HANDOFF_STATUSES)[number];
+
+export type HandoffRequest = {
+  id: string;
+  createdAt: string;
+  status: HandoffStatus;
+  pickup: string;
+  dropoff: string;
+  when: string;
+  clientHint: string;
+  note: string;
+};
+
+export type CommunityConversation = {
+  id: string;
+  title: string;
+  createdAt: string;
+  lastMessageAt: string;
+};
+
+export type CommunityMessage = {
+  id: string;
+  conversationId: string;
+  body: string;
+  createdAt: string;
+  fromSelf: boolean;
+};
+
+export function driverProfileFromSettings(s: Settings): DriverProfile {
+  return {
+    name: s.driverName,
+    city: s.city,
+    currency: s.currency,
+    drivingSituation: s.drivingSituation,
+    workSources: s.workSources,
+  };
+}
+
+export function vehicleFromSettings(s: Settings): Vehicle | null {
+  if (!s.vehicleMake && !s.vehicleModel && !s.plate) return null;
+  return {
+    id: "vehicle-primary",
+    make: s.vehicleMake,
+    model: s.vehicleModel,
+    year: s.year,
+    plate: s.plate,
+    fuelType: s.fuelType,
+    currentMileage: s.currentMileage,
+    purchaseValue: s.purchaseValue,
+  };
+}
+
 export type PeriodKey = "today" | "week" | "month" | "all";

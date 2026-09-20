@@ -1,22 +1,28 @@
 import type {
   Allocation,
   CalendarEvent,
+  CommunityConversation,
+  CommunityMessage,
   Customer,
   DevelopmentActivity,
+  DriverAvailability,
   DriverDocument,
   EmergencyFund,
   Expense,
   Goal,
   GoalContribution,
+  HandoffRequest,
   Income,
   MaintenanceRecord,
+  RecordedMilestone,
   Settings,
   Shift,
   Skill,
+  StoredInsight,
   Trip,
   WeeklyReview,
 } from "./types";
-import { DEFAULT_PRIORITIES, DEFAULT_REMINDERS, EMPTY_BUDGET, SKILL_AREAS } from "./types";
+import { DEFAULT_CURRENCY, DEFAULT_PRIORITIES, DEFAULT_REMINDERS, EMPTY_BUDGET, SKILL_AREAS } from "./types";
 
 function at(daysAgo: number, hour: number, minute = 0): string {
   const d = new Date();
@@ -47,7 +53,7 @@ export function emptySettings(): Settings {
     vehicleModel: "",
     plate: "",
     year: "",
-    currency: "RWF",
+    currency: DEFAULT_CURRENCY,
     weeklyTarget: 0,
     city: "",
     sampleData: false,
@@ -904,6 +910,12 @@ export function sampleBundle() {
     activities: seedActivities,
     weeklyReviews: seedWeeklyReviews,
     monthlyReviews: [] as { id: string; monthKey: string; whatWentWell: string; whatNeedsAttention: string; priorities: [string, string, string]; createdAt: string }[],
+    milestones: [] as RecordedMilestone[],
+    insights: [] as StoredInsight[],
+    availability: [] as DriverAvailability[],
+    handoffs: [] as HandoffRequest[],
+    conversations: [] as CommunityConversation[],
+    messages: [] as CommunityMessage[],
     settings: seedSettings,
   };
 }

@@ -7,6 +7,7 @@ import {
   faresOf,
   kmOf,
   minutesOf,
+  moneySnapshot,
   spendOf,
   tipsOf,
   type MoneySnapshot,
@@ -14,10 +15,14 @@ import {
 import {
   EXPENSE_LABEL,
   PLATFORM_LABEL,
+  type Allocation,
   type CurrencyCode,
+  type EmergencyFund,
   type Expense,
+  type Income,
   type PeriodKey,
   type Settings,
+  type Shift,
   type Trip,
 } from "./types";
 
@@ -182,7 +187,7 @@ export function buildGrowthReportText(opts: {
 }): string {
   const lines = [
     `*Runsheet — growth report*`,
-    settings.driverName || "Driver",
+    opts.settings.driverName || "Driver",
     `Score: ${opts.total}`,
     "",
   ];

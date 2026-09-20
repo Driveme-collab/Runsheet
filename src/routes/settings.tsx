@@ -53,8 +53,15 @@ function SettingsPage() {
       documents: state.documents,
       events: state.events,
       skills: state.skills,
+      activities: state.activities,
       weeklyReviews: state.weeklyReviews,
       monthlyReviews: state.monthlyReviews,
+      milestones: state.milestones,
+      insights: state.insights,
+      availability: state.availability,
+      handoffs: state.handoffs,
+      conversations: state.conversations,
+      messages: state.messages,
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
@@ -68,10 +75,20 @@ function SettingsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <h1 className="font-display text-4xl tracking-tight italic">Profile</h1>
-        <p className="mt-1 text-sm text-muted-foreground">This is your space. Preferences, privacy, and a copy of the book.</p>
-      </div>
+      <section className="relative overflow-hidden rounded-xl shadow-[var(--shadow-border)]">
+        <img
+          src="/cover-bg.jpg"
+          alt=""
+          className="absolute inset-0 size-full object-cover outline outline-1 -outline-offset-1 outline-white/10"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40" />
+        <div className="relative px-5 py-8 sm:px-7">
+          <h1 className="font-display text-4xl tracking-tight italic">Profile</h1>
+          <p className="mt-1 max-w-xl text-sm text-muted-foreground">
+            This is your space. Preferences, privacy, and a copy of the book.
+          </p>
+        </div>
+      </section>
 
       <Card>
         <CardContent className="grid gap-3">

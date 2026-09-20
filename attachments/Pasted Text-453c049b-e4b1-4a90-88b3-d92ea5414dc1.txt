@@ -1,0 +1,323 @@
+RUNSHEET — STAGE 1
+
+Foundation, Audit, Architecture & Existing Functionality
+
+You are working on my existing Runsheet application.
+
+IMPORTANT: Do NOT rebuild the application from scratch.
+First inspect what already exists and preserve all working functionality.
+
+Runsheet is intended to become:
+
+«Runsheet — Your Personal Driver Management System
+Work. Money. Vehicle. Goals. Growth.»
+
+Runsheet is a PERSONAL driver management system, not a corporate fleet-management, dispatch, payroll, or employer-surveillance system.
+
+It should be useful to:
+
+- independent drivers
+- Uber drivers
+- Bolt drivers
+- inDrive drivers
+- Yego drivers
+- private/hired drivers
+- drivers working with companies such as Hillride Africa in the future
+
+The driver owns their personal Runsheet data.
+
+---
+
+1. FIRST: AUDIT THE CURRENT APPLICATION
+
+Before changing anything, inspect:
+
+- current routes
+- components
+- database/backend
+- authentication
+- data persistence
+- state management
+- existing calculations
+- forms/dialogs
+- navigation
+- responsive behavior
+- sample/demo data
+- current Trips
+- current Customers/People
+- current Costs/Expenses
+- current Reports
+- current Goals
+- current Settings/Profile
+
+Identify what is actually functional versus what is only visual.
+
+Do not remove working functionality simply to change the architecture.
+
+---
+
+2. ESTABLISH THE NEW PRODUCT STRUCTURE
+
+Prepare the application for this future navigation:
+
+1. Home
+2. Work
+3. Money
+4. Vehicle
+5. Goals
+6. Growth
+7. Community
+8. Calendar
+9. Reports
+10. Profile / Settings
+
+Do NOT fully build all these modules in Stage 1.
+
+For this stage, establish a clean structure that allows the later stages to be added without major rewrites.
+
+If necessary, reorganize routes/components internally.
+
+---
+
+3. DEFINE THE PRODUCT PRINCIPLE
+
+Runsheet should follow this lifecycle:
+
+RECORD → UNDERSTAND → DECIDE → IMPROVE → GROW
+
+Every future feature should support one or more of these stages.
+
+The application should help a driver answer:
+
+- What did I do?
+- What did I earn?
+- What did I spend?
+- What did I keep?
+- How is my vehicle performing?
+- What am I building toward?
+- How am I improving?
+- What should I do next?
+
+---
+
+4. DATA ARCHITECTURE PREPARATION
+
+Prepare the data architecture for the following entities.
+
+Do not unnecessarily implement every field yet.
+
+Core entities:
+
+- User
+- DriverProfile
+- Vehicle
+- Trip
+- Shift
+- Customer
+- Income
+- Expense
+- MoneyAllocation
+- SavingsGoal
+- EmergencyFund
+- GoalContribution
+- MaintenanceRecord
+- Document
+- CalendarEvent
+- Skill
+- DevelopmentActivity
+- Milestone
+- WeeklyReview
+- MonthlyReview
+- Insight
+- DriverAvailability
+- HandoffRequest
+- CommunityMessage / Conversation
+
+The architecture must keep personal financial/family information separate from any future employer or fleet integration.
+
+---
+
+5. IMPORTANT PRIVACY PRINCIPLE
+
+Runsheet must NOT assume that a driver's employer should see:
+
+- personal finances
+- family expenses
+- savings
+- emergency fund
+- personal goals
+- private notes
+- personal development information
+
+Any future Hillride/company integration must be opt-in and limited to explicitly approved information.
+
+---
+
+6. EXISTING WORK MODULE
+
+Preserve the current trip/driver-record functionality.
+
+The existing Work area should eventually contain:
+
+- Trips
+- Shifts
+- Customers
+
+Do not remove the current functionality.
+
+Where practical, organize existing routes under Work without breaking their URLs or functionality.
+
+---
+
+7. RWANDA-FIRST FOUNDATION
+
+The application should be suitable for Rwanda/Kigali while remaining internationally usable.
+
+Prepare localization for:
+
+- Rwanda
+- RWF currency
+- Kigali
+- kilometers
+- local driver terminology
+
+Remove or avoid unnecessary South African-specific assumptions such as:
+
+- Cape Town
+- Claremont
+- Wynberg
+- ZAR as the default
+- South African sample customers
+
+Do not hard-code Rwanda so tightly that the application cannot later support other countries.
+
+---
+
+8. MOBILE-FIRST DIRECTION
+
+The application will eventually be used heavily from a phone while drivers are working.
+
+Therefore establish:
+
+- mobile-friendly navigation
+- large touch targets
+- simple forms
+- fast data entry
+- readable cards
+- minimal unnecessary typing
+- responsive tables
+- accessible dialogs
+- clear feedback after saving
+
+Do not sacrifice the current desktop experience.
+
+---
+
+9. DESIGN DIRECTION
+
+Keep the existing professional visual quality where it works.
+
+The Runsheet identity should feel:
+
+- professional
+- calm
+- trustworthy
+- practical
+- mature
+- driver-focused
+
+Avoid making it look like:
+
+- corporate fleet surveillance software
+- a children's reward app
+- a social media platform
+- an overly complicated accounting system
+
+---
+
+10. ONBOARDING PREPARATION
+
+Prepare the application to eventually collect:
+
+- driver name
+- driving situation
+- platforms used
+- vehicle
+- city
+- currency
+- main financial goal
+- optional emergency-fund target
+- career/next-level goal
+
+Do not build a complicated onboarding flow yet unless it is required to support the existing application.
+
+---
+
+11. DEMO DATA
+
+Replace inappropriate existing sample data with neutral Rwanda-friendly examples where sample data is necessary.
+
+Clearly separate:
+
+sample/demo data
+from
+real driver data.
+
+Never make fake data appear to be real user activity.
+
+---
+
+12. STAGE 1 LIMITATION
+
+DO NOT build the following in this stage:
+
+- advanced Money module
+- Emergency Fund
+- Vehicle asset analytics
+- Growth system
+- Community
+- Client handoff
+- advanced calendar
+- advanced insights
+- complex gamification
+
+Those will be handled in later stages.
+
+---
+
+13. ACCEPTANCE CRITERIA
+
+Stage 1 is complete only when:
+
+- existing Trips work
+- existing Customers/People work
+- existing Costs/Expenses work
+- existing Goals work
+- existing Reports work
+- existing Settings work
+- navigation works
+- data persists correctly
+- existing calculations still work
+- mobile layout is usable
+- no major console/runtime errors remain
+- no existing useful feature has been accidentally removed
+- architecture is ready for the next stages
+- Rwanda-friendly defaults are prepared
+- privacy boundaries are respected
+
+---
+
+14. VERY IMPORTANT — STOP AFTER STAGE 1
+
+Do NOT continue implementing Stage 2, 3, 4, or 5 automatically.
+
+After completing Stage 1:
+
+1. test the application
+2. audit the implementation
+3. fix issues caused by your changes
+4. report what was completed
+5. report anything still incomplete
+6. STOP
+
+Wait for my next prompt before building Stage 2.

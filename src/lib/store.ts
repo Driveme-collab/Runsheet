@@ -4,24 +4,30 @@ import { uid } from "./utils";
 import type {
   Allocation,
   CalendarEvent,
+  CommunityConversation,
+  CommunityMessage,
   Customer,
   CustomerStatus,
   DevelopmentActivity,
+  DriverAvailability,
   DriverDocument,
   EmergencyFund,
   Expense,
   Goal,
   GoalContribution,
+  HandoffRequest,
   Income,
   MaintenanceRecord,
   MonthlyReview,
+  RecordedMilestone,
   Settings,
   Shift,
   Skill,
+  StoredInsight,
   Trip,
   WeeklyReview,
 } from "./types";
-import { DEFAULT_PRIORITIES, DEFAULT_REMINDERS, EMPTY_BUDGET } from "./types";
+import { DEFAULT_CURRENCY, DEFAULT_PRIORITIES, DEFAULT_REMINDERS, EMPTY_BUDGET } from "./types";
 import {
   defaultSkills,
   emptyEmergencyFund,
@@ -47,6 +53,12 @@ export type RunsheetData = {
   activities: DevelopmentActivity[];
   weeklyReviews: WeeklyReview[];
   monthlyReviews: MonthlyReview[];
+  milestones: RecordedMilestone[];
+  insights: StoredInsight[];
+  availability: DriverAvailability[];
+  handoffs: HandoffRequest[];
+  conversations: CommunityConversation[];
+  messages: CommunityMessage[];
   settings: Settings;
 };
 
@@ -122,6 +134,12 @@ function emptyData(): RunsheetData {
     activities: [],
     weeklyReviews: [],
     monthlyReviews: [],
+    milestones: [],
+    insights: [],
+    availability: [],
+    handoffs: [],
+    conversations: [],
+    messages: [],
     settings: emptySettings(),
   };
 }
@@ -146,7 +164,7 @@ function normalizeSettings(raw: Partial<Settings> | undefined): Settings {
   return {
     ...base,
     ...raw,
-    currency: raw.currency ?? "RWF",
+    currency: raw.currency ?? DEFAULT_CURRENCY,
     workSources: Array.isArray(raw.workSources) ? raw.workSources : [],
     onboarded: raw.onboarded ?? Boolean(raw.driverName),
     drivingSituation: raw.drivingSituation ?? "own",
@@ -250,6 +268,12 @@ function migratePersisted(raw: unknown, version: number): RunsheetData {
     activities: s.activities ?? [],
     weeklyReviews: s.weeklyReviews ?? [],
     monthlyReviews: s.monthlyReviews ?? [],
+    milestones: s.milestones ?? [],
+    insights: s.insights ?? [],
+    availability: s.availability ?? [],
+    handoffs: s.handoffs ?? [],
+    conversations: s.conversations ?? [],
+    messages: s.messages ?? [],
     settings:
       version < 2 && settings.currency === "ZAR" && settings.sampleData === false
         ? { ...settings, currency: settings.city.toLowerCase().includes("cape") ? settings.currency : settings.currency }
@@ -565,7 +589,7 @@ export const useRunsheet = create<RunsheetState>()(
     }),
     {
       name: "runsheet.v1",
-      version: 3,
+      version: 4,
       storage: createJSONStorage(() => localStorage),
       skipHydration: true,
       migrate: (persisted, version) => migratePersisted(persisted, version),
@@ -587,6 +611,12 @@ export const useRunsheet = create<RunsheetState>()(
         activities: state.activities,
         weeklyReviews: state.weeklyReviews,
         monthlyReviews: state.monthlyReviews,
+        milestones: state.milestones,
+        insights: state.insights,
+        availability: state.availability,
+        handoffs: state.handoffs,
+        conversations: state.conversations,
+        messages: state.messages,
         settings: state.settings,
       }),
     },

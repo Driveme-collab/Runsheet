@@ -100,7 +100,18 @@ function Home() {
         </div>
       ) : null}
 
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <section className="relative overflow-hidden rounded-xl shadow-[var(--shadow-border)]">
+        <img
+          src="/cover-hero.jpg"
+          alt=""
+          data-print-hide
+          className="absolute inset-0 size-full object-cover object-center outline outline-1 -outline-offset-1 outline-white/10"
+        />
+        <div
+          data-print-hide
+          className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/30"
+        />
+        <div className="relative flex min-h-52 flex-col gap-4 px-5 py-7 sm:min-h-60 sm:flex-row sm:items-end sm:justify-between sm:px-7 sm:py-8">
         <div>
           <p className="text-sm text-muted-foreground">{format(new Date(), "EEEE d MMMM")}</p>
           <h1 className="mt-1 font-display text-4xl tracking-tight italic sm:text-5xl">
@@ -129,7 +140,8 @@ function Home() {
             Log trip
           </Button>
         </div>
-      </div>
+        </div>
+      </section>
 
       {openShift && shiftStats ? (
         <Card>
